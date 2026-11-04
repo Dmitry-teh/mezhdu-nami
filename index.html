@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ef">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Между нами">
+<title>Между нами</title>
+<style>
+:root{--bg:#f7f4ef;--card:#fffdfa;--ink:#252a2b;--muted:#6f7775;--green:#416d62;--green2:#e5eee9;--line:#e7e2da;--peach:#f4e3d8;--lav:#eae7f4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}
+.app{max-width:620px;margin:auto;min-height:100dvh;padding:env(safe-area-inset-top) 18px calc(28px + env(safe-area-inset-bottom))}
+header{padding:20px 2px 16px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:750;font-size:19px;letter-spacing:-.4px}.brand span{color:var(--green)}.tag{font-size:11px;color:var(--muted);background:#ebe7df;padding:6px 9px;border-radius:20px}
+h1{font-size:34px;line-height:1.08;letter-spacing:-1.1px;margin:22px 0 12px}h2{font-size:21px;letter-spacing:-.4px;margin:0 0 8px}p{margin:0 0 12px}.sub{color:var(--muted);font-size:15px;max-width:460px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:19px;margin:16px 0;box-shadow:0 5px 18px #34291a08}
+.eyebrow{text-transform:uppercase;letter-spacing:1.4px;font-size:10px;font-weight:750;color:var(--green);margin-bottom:8px}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.mode{border:1px solid var(--line);border-radius:16px;padding:15px 12px;background:white;text-align:left;color:var(--ink);font:inherit}.mode.active{border:1.5px solid var(--green);background:var(--green2)}.mode strong{display:block;font-size:15px;margin:7px 0 4px}.mode small{display:block;color:var(--muted);font-size:12px;line-height:1.35}.emoji{font-size:22px}
+label{display:block;font-weight:650;font-size:13px;margin:16px 0 7px}textarea,input{font:inherit;width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px;color:var(--ink);outline:none}textarea{resize:vertical;min-height:130px}textarea:focus,input:focus{border-color:var(--green)}.hint{font-size:12px;color:var(--muted);margin-top:7px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--muted);font-weight:400;line-height:1.4;margin:14px 0}.check input{width:18px;height:18px;margin:0;flex-shrink:0;accent-color:var(--green)}
+button.primary{width:100%;border:0;border-radius:15px;padding:15px;background:var(--green);color:white;font-size:15px;font-weight:700;margin-top:12px;cursor:pointer}button.secondary{border:1px solid var(--line);border-radius:13px;padding:11px 13px;background:white;color:var(--ink);font-weight:650;cursor:pointer}
+.note{background:#f1ede5;border-radius:14px;padding:12px 14px;font-size:12px;color:#5e625f;margin-top:14px}
+.hidden{display:none!important}.resultHead{display:flex;gap:12px;align-items:center}.orb{width:42px;height:42px;border-radius:14px;background:var(--green2);display:grid;place-items:center;font-size:21px;flex-shrink:0}.resultBlock{padding:14px 0;border-bottom:1px solid var(--line)}.resultBlock:last-child{border-bottom:0}.resultBlock h3{font-size:14px;margin:0 0 6px}.resultBlock p{font-size:14px;color:#4c5552;margin:0}.pill{display:inline-block;font-size:11px;padding:5px 9px;border-radius:20px;background:var(--lav);margin:3px 4px 3px 0}.footer{font-size:11px;color:var(--muted);text-align:center;padding:20px 10px}.topline{height:3px;border-radius:5px;background:var(--line);overflow:hidden}.topline div{height:100%;width:0;background:var(--green);transition:width .3s}
+@media(min-width:560px){.app{padding-left:28px;padding-right:28px}h1{font-size:42px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand">♡ <span>Между нами</span></div><div class="tag">пространство понимания</div></header>
+<main id="home">
+<div class="eyebrow">Понять, а не победить</div>
+<h1>Иногда важно<br>услышать друг друга.</h1>
+<p class="sub">Спокойно разберём ситуацию, отделим факты от предположений и найдём слова, с которых можно начать разговор.</p>
+<div class="modes">
+<button class="mode active" id="solo" onclick="setMode('solo')"><span class="emoji">☁️</span><strong>Разобраться самому</strong><small>Ваш взгляд, чувства и следующий шаг</small></button>
+<button class="mode" id="together" onclick="setMode('together')"><span class="emoji">🤝</span><strong>Понять ситуацию вместе</strong><small>Два взгляда — без поиска виноватого</small></button>
+</div>
+<section class="card">
+<div class="eyebrow">Начнём с вашей истории</div>
+<h2>Что произошло?</h2>
+<p class="sub" style="font-size:13px">Пишите так, как удобно. Не нужно подбирать правильные слова.</p>
+<label for="story">Ваша ситуация</label>
+<textarea id="story" placeholder="Например: мы поссорились из-за планов на выходные. Я почувствовал(а), что меня не учитывают…"></textarea>
+<div id="secondWrap" class="hidden">
+<label for="other">Взгляд другого человека (если он согласен поделиться)</label>
+<textarea id="other" style="min-height:95px" placeholder="Что, по его или её словам, произошло?"></textarea>
+</div>
+<label for="goal">Что хотелось бы понять?</label>
+<select id="goal" style="font:inherit;width:100%;padding:13px;border-radius:14px;border:1px solid var(--line);background:white">
+<option>Почему мы не поняли друг друга</option><option>Что я чувствую и чего мне не хватает</option><option>Как начать спокойный разговор</option><option>Как обозначить границы</option><option>Как принять решение</option>
+</select>
+<label class="check"><input type="checkbox" id="consent"><span>Я понимаю, что это демонстрационная версия: текст обрабатывается только в этом браузере, а ответ ниже формируется по шаблону, без настоящего ИИ.</span></label>
+<button class="primary" onclick="analyze()">Разобрать ситуацию</button>
+<div class="note">Здесь нет диагнозов и чтения мыслей. Предположения — не факты, а совместный разговор не обязателен.</div>
+</section>
+</main>
+<section id="results" class="hidden">
+<div class="eyebrow">Ваш разбор</div><h1 style="font-size:31px">Давайте посмотрим бережно.</h1>
+<p class="sub">Это отправная точка для размышления, а не окончательный вывод о вас или другом человеке.</p>
+<div class="card">
+<div class="resultHead"><div class="orb">🌿</div><div><h2 style="margin:0">Что можно увидеть</h2><p class="hint" style="margin:3px 0 0">Демонстрационный разбор</p></div></div>
+<div class="resultBlock"><h3>1. Что известно</h3><p id="facts"></p></div>
+<div class="resultBlock"><h3>2. Что вы можете чувствовать</h3><p id="feelings"></p></div>
+<div class="resultBlock"><h3>3. Что пока неизвестно</h3><p>Мы не знаем наверняка, что имел в виду другой человек. Лучше спросить, чем додумывать за него.</p></div>
+<div class="resultBlock"><h3>4. Фраза для начала разговора</h3><p id="phrase"></p></div>
+<div class="resultBlock"><h3>5. Маленький следующий шаг</h3><p>Выберите спокойный момент. Опишите один конкретный эпизод, скажите, как он на вас повлиял, и задайте один открытый вопрос. Дайте другому человеку возможность ответить.</p></div>
+<div class="note">Если в ситуации есть страх, угрозы, контроль или насилие, не нужно добиваться совместного разговора любой ценой. На первом месте — ваша безопасность.</div>
+</div>
+<button class="secondary" onclick="back()" style="width:100%">← Вернуться и уточнить историю</button>
+<div class="footer">«Между нами» · демоверсия. Не заменяет помощь квалифицированного специалиста.</div>
+</section>
+</div>
+<script>
+let mode='solo';
+function setMode(m){mode=m;document.getElementById('solo').classList.toggle('active',m==='solo');document.getElementById('together').classList.toggle('active',m==='together');document.getElementById('secondWrap').classList.toggle('hidden',m!=='together');}
+function analyze(){
+ const story=document.getElementById('story').value.trim();
+ if(!story){alert('Расскажите хотя бы в двух словах, что произошло.');return;}
+ if(!document.getElementById('consent').checked){alert('Пожалуйста, подтвердите, что понимаете ограничения демонстрационной версии.');return;}
+ const goal=document.getElementById('goal').value;
+ document.getElementById('facts').textContent='Вы описали ситуацию: «'+story.slice(0,420)+(story.length>420?'…':'')+'». Это ваш рассказ о произошедшем; пока у нас нет независимой информации о том, как это видел другой человек.';
+ document.getElementById('feelings').textContent='Попробуйте проверить, что ближе именно вам: обида, тревога, растерянность, злость, разочарование или потребность быть услышанным(ой). Это варианты для самопроверки, не вывод о ваших чувствах.';
+ document.getElementById('phrase').textContent=mode==='together'?'«Я хочу лучше понять, как мы оба увидели эту ситуацию. Я расскажу, что почувствовал(а), а потом хочу услышать твой взгляд. Ты готов(а) поговорить об этом сейчас?»':'«Для меня эта ситуация важна, и я хочу разобраться без обвинений. Что именно меня задело и чего мне хотелось бы попросить?»';
+ document.getElementById('home').classList.add('hidden');document.getElementById('results').classList.remove('hidden');window.scrollTo(0,0);
+}
+function back(){document.getElementById('results').classList.add('hidden');document.getElementById('home').classList.remove('hidden');window.scrollTo(0,0);}
+</script>
+</body></html>
